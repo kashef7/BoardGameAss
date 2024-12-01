@@ -24,13 +24,13 @@ public:
     virtual void display_board() = 0;
 
     /// Returns true if there is any winner
-    virtual bool is_win() = 0;
+    /*virtual bool is_win() = 0;
 
     /// Return true if all moves are done and no winner
     virtual bool is_draw() = 0;
 
     /// Return true if the game is over
-    virtual bool game_is_over() = 0;
+    virtual bool game_is_over() = 0;*/
 };
 
 template <typename T>
