@@ -21,6 +21,8 @@ public:
     void display_board();
 
     bool update_board(int x,int y,T symbol);
+
+    bool is_win();
 };
 
 
@@ -53,16 +55,66 @@ bool Four_in_a_Row<T> ::update_board(int x, int y, T symbol) {
         cout << "Invalid move: Coordinates out of bounds." << endl;
         return false;
     }
-
     // Check if the cell is empty
     if (this->board[x][y] != ' ') {
         cout << "Invalid move: Cell is already occupied." << endl;
         return false;
     }
+    for (int z=4; z>=0;z-- ){
+        if (this->board[z][y]==' '){
+            this->board[z][y] = symbol;
+            return true;
+        }
+    }
 
-    // Update the board with the symbol
-    this->board[x][y] = symbol;
-    return true;
+}
+template <typename T>
+bool Four_in_a_Row<T> :: is_win() {
+    for ( int i=4 ; i>=0 ; i--){
+        for ( int j=0 ; j<=3 ; j++ ){
+            if (this->board[i][j] == this->board[i][j+1] &&
+                this->board[i][j+1] == this->board[i][j+2] &&
+                this->board[i][j+2] == this->board[i][j+3] &&
+                this->board[i][j] != ' '){
+                cout << "the row win";
+                return true;
+            }
+        }
+    }
+    for ( int i=4 ; i>=3 ; i--){
+        for ( int j=0 ; j<=3 ; j++ ){
+            if (this->board[i][j] == this->board[i-1][j] &&
+                this->board[i-1][j] == this->board[i-2][j] &&
+                this->board[i-2][j] == this->board[i-3][j] &&
+                this->board[i][j] != ' ') {
+                cout << "the column win";
+                return true;
+            }
+        }
+    }
+    for ( int i=4 ; i>2 ; i--){
+        for ( int j=0 ; j<=3 ; j++ ){
+            if (this->board[i][j] == this->board[i-1][j+1] &&
+                this->board[i-1][j+1] == this->board[i-2][j+2] &&
+                this->board[i-2][j+2] == this->board[i-3][j+3] &&
+                this->board[i][j] != ' '){
+                cout << "the diagonal win";
+                return true;
+            }
+        }
+    }
+    for ( int i=1 ; i>=0 ; i--){
+        for ( int j=0 ; j<=3 ; j++ ){
+            if (this->board[i][j] == this->board[i+1][j+1] &&
+                this->board[i+1][j+1] == this->board[i+2][j+2] &&
+                this->board[i+2][j+2] == this->board[i+3][j+3] &&
+                this->board[i][j] != ' '){
+                cout << "the diagonal winSSS";
+                return true;
+            }
+        }
+    }
+    return false;
 }
 
 
