@@ -10,4 +10,5 @@ add_executable(BoardGameAss
         Four_in_a_Row.h
         main.cpp
         PyramidXO.h
+        WordXO.h
 )
