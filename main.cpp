@@ -2,6 +2,7 @@
 // Created by User on 12/2/2024.
 //
 #include "BoardGame_Classes.h"
+#include "PyramidXO.h"
 #include "Four_in_a_Row.h"
 
 using namespace std;

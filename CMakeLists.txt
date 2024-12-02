@@ -8,4 +8,6 @@ include_directories(.)
 add_executable(BoardGameAss
         BoardGame_Classes.h
         Four_in_a_Row.h
-        main.cpp)
+        main.cpp
+        PyramidXO.h
+)
