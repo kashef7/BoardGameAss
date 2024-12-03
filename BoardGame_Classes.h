@@ -27,10 +27,10 @@ public:
     virtual bool is_win() = 0;
 
     /// Return true if all moves are done and no winner
-    /*virtual bool is_draw() = 0;
+    virtual bool is_draw() = 0;
 
     /// Return true if the game is over
-    virtual bool game_is_over() = 0;*/
+    virtual bool game_is_over() = 0;
 };
 
 template <typename T>
@@ -120,7 +120,7 @@ void GameManager<T>::run() {
 using namespace std;
 // Constructor for Player with a name and symbol
 template <typename T>
-Player<T>::Player(std::string n, T symbol) {
+Player<T>::Player(string n, T symbol) {
     this->name = n;
     this->symbol = symbol;
 }

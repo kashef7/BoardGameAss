@@ -16,14 +16,26 @@ class Four_in_a_Row : public Board<T>{
 public:
     Four_in_a_Row();
 
-    ~Four_in_a_Row();
 
     void display_board();
 
     bool update_board(int x,int y,T symbol);
 
     bool is_win();
+
+    bool is_draw();
+
+    bool game_is_over();
+
 };
+template <typename T>
+class Four_in_a_Row_Player : public Player<T> {
+public:
+    Four_in_a_Row_Player (string name, T symbol);
+    void getmove(int& x, int& y) ;
+
+};
+
 
 
 template <typename T>
@@ -66,8 +78,10 @@ bool Four_in_a_Row<T> ::update_board(int x, int y, T symbol) {
             return true;
         }
     }
-
+    cout << "Invalid move: Column is full." << endl;
+    return false;
 }
+
 template <typename T>
 bool Four_in_a_Row<T> :: is_win() {
     for ( int i=4 ; i>=0 ; i--){
@@ -115,6 +129,24 @@ bool Four_in_a_Row<T> :: is_win() {
         }
     }
     return false;
+}
+template <typename T>
+bool Four_in_a_Row<T>::is_draw() {
+    return (this->n_moves == 9 && !is_win());
+}
+
+template <typename T>
+bool Four_in_a_Row<T>::game_is_over() {
+    return is_win() || is_draw();
+}
+template <typename T>
+Four_in_a_Row_Player<T>::Four_in_a_Row_Player(string name, T symbol) : Player<T>(name, symbol) {}
+
+template <typename T>
+void Four_in_a_Row_Player<T>::getmove(int& x, int& y) {
+    cout << "\nPlease enter your move y (0 to 6) : \n";
+    x=0;
+    cin >> y;
 }
 
 
