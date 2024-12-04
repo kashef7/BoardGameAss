@@ -82,6 +82,9 @@
 		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/Four_in_a_Row.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/Numerical_TicTacToe.h">
+			<Option target="BoardGameAss"/>
+		</Unit>
 		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/PyramidXO.h">
 			<Option target="BoardGameAss"/>
 		</Unit>

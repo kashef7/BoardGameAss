@@ -50,7 +50,7 @@ PyramidXO_Board<T>::PyramidXO_Board() {
     for (int i = 0; i < this->rows; i++) {
         this->board[i] = new char[this->columns];
         for (int j = 0; j < this->columns; j++) {
-            this->board[i][j] = '0';
+            this->board[i][j] = ' ';
         }
     }
     this->n_moves = 0;
@@ -78,11 +78,11 @@ void PyramidXO_Board<T>::display_board() {
 template <typename T>
 bool PyramidXO_Board<T>::update_board(int x, int y, T symbol) {
     if ((x < 0 || y < 0 || x >= this->rows || y >= this->columns) ||
-        (this->board[x][y] != '0' ||
+        (this->board[x][y] != ' ' ||
          ((x == 0 && y >= 1 && y <= 4) || (x == 1 && y >= 3 && y <= 4)))) {
         return false;
     }
-    else if(this->board[x][y] == '0'){
+    else if(this->board[x][y] == ' '){
         this->board[x][y] = toupper(symbol);
         this->n_moves++;
         return true;
@@ -94,14 +94,14 @@ bool PyramidXO_Board<T>::update_board(int x, int y, T symbol) {
 
 template <typename T>
 bool PyramidXO_Board<T>::is_win(){
-    if ((this->board[0][0] == this->board[1][0] && this->board[1][0] == this->board[2][0] && this->board[0][0] != '0') ||
-        (this->board[0][0] == this->board[1][2] && this->board[1][2] == this->board[2][4] && this->board[0][0] != '0') ||
-        (this->board[0][0] == this->board[1][1] && this->board[1][1] == this->board[2][2] && this->board[0][0] != '0')){
+    if ((this->board[0][0] == this->board[1][0] && this->board[1][0] == this->board[2][0] && this->board[0][0] != ' ') ||
+        (this->board[0][0] == this->board[1][2] && this->board[1][2] == this->board[2][4] && this->board[0][0] != ' ') ||
+        (this->board[0][0] == this->board[1][1] && this->board[1][1] == this->board[2][2] && this->board[0][0] != ' ')){
         return true;
     }
     for(int i = 0; i <= this->rows-1;i++){
         for(int j = 0; j <= this->columns-1;j++){
-            if(this->board[i][j] !='0'){
+            if(this->board[i][j] !=' '){
                 if (this->board[i][j] == this->board[i][j+1] && this->board[i][j+1] == this->board[i][j+2])
                 {
                     return true;

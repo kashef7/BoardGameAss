@@ -1,11 +1,9 @@
 //
-// Created by Elkashef on 12/3/2024.
+// Created by Elkashef on 12/2/2024.
 //
 
-#ifndef A2_T456_WORDXO_H
-#define A2_T456_WORDXO_H
-
-
+#ifndef UNTITLED1_WORDXO_H
+#define UNTITLED1_WORDXO_H
 #include "BoardGame_Classes.h"
 #include <fstream>
 #include <cstdlib>
@@ -95,6 +93,21 @@ bool WordXO_Board<T>::is_win() {
         file.seekg(0);
         while (file >> fileWord) {
             if ( fileWord == word) {
+                cout << "winning word:" << word <<endl;
+                return true;
+            }
+        }
+        word = "";
+    }
+    for(int i = 0;i <= 2;i++){
+        for(int j = 0;j <= 2;j++){
+            word += this->board[j][i];
+        }
+        file.clear();
+        file.seekg(0);
+        while (file >> fileWord) {
+            if ( fileWord == word) {
+                cout << "winning word:" << word <<endl;
                 return true;
             }
         }
@@ -107,19 +120,19 @@ bool WordXO_Board<T>::is_win() {
     file.seekg(0);
     while (file >> fileWord) {
         if ( fileWord == word) {
+            cout << "winning word:" << word <<endl;
             return true;
         }
     }
     word = "";
-    for(int i = 0;i <= 2;i++){
-        for(int j = 2;j >=0 ;j--){
-            word += this->board[i][j];
-        }
-    }
+    word += this->board[0][2];
+    word += this->board[1][1];
+    word += this->board[2][0];
     file.clear();
     file.seekg(0);
     while (file >> fileWord) {
         if ( fileWord == word) {
+            cout << "winning word:" << word <<endl;
             return true;
         }
     }
@@ -169,4 +182,5 @@ void WordXO_Random_Player<T>::getmove(int &x, int &y) {
 }
 
 
-#endif //A2_T456_WORDXO_H
+
+#endif //UNTITLED1_WORDXO_H

@@ -16,7 +16,6 @@ class Four_in_a_Row : public Board<T>{
 public:
     Four_in_a_Row();
 
-
     void display_board();
 
     bool update_board(int x,int y,T symbol);
@@ -75,7 +74,7 @@ bool Four_in_a_Row<T> ::update_board(int x, int y, T symbol) {
     for (int z=4; z>=0;z-- ){
         if (this->board[z][y]==' '){
             this->board[z][y] = symbol;
-            this ->n_move+=1;
+            this->n_moves+=1;
             return true;
         }
     }
@@ -148,6 +147,7 @@ void Four_in_a_Row_Player<T>::getmove(int& x, int& y) {
     cout << "\nPlease enter your move y (0 to 6) : \n";
     x=0;
     cin >> y;
+
 }
 
 
