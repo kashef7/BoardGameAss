@@ -11,4 +11,5 @@ add_executable(BoardGameAss
         main.cpp
         PyramidXO.h
         WordXO.h
+        Numerical_TicTacToe.h
 )

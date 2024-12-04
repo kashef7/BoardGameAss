@@ -75,6 +75,7 @@ bool Four_in_a_Row<T> ::update_board(int x, int y, T symbol) {
     for (int z=4; z>=0;z-- ){
         if (this->board[z][y]==' '){
             this->board[z][y] = symbol;
+            this ->n_move+=1;
             return true;
         }
     }
@@ -132,7 +133,7 @@ bool Four_in_a_Row<T> :: is_win() {
 }
 template <typename T>
 bool Four_in_a_Row<T>::is_draw() {
-    return (this->n_moves == 9 && !is_win());
+    return (this->n_moves == 42 && !is_win());
 }
 
 template <typename T>
