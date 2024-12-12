@@ -26,15 +26,9 @@ public:
 
     bool game_is_over();
 
-};
-template <typename T>
-class Four_in_a_Row_Player : public Player<T> {
-public:
-    Four_in_a_Row_Player (string name, T symbol);
-    void getmove(int& x, int& y) ;
+    T getCell(int row, int col) const;
 
 };
-
 
 
 template <typename T>
@@ -50,6 +44,15 @@ Four_in_a_Row <T>::Four_in_a_Row() {
     }
     this->n_moves = 0;
 }
+
+template <typename T>
+T Four_in_a_Row<T>::getCell(int row, int col) const {
+    if (row >= 0 && row < this->rows && col >= 0 && col < this->columns) {
+        return this->board[row][col];
+    }
+    return ' '; // Return empty space for out-of-bounds access
+}
+
 template <typename T>
 void Four_in_a_Row<T>::display_board(){
     cout << "Current Board:" << endl;
@@ -61,30 +64,35 @@ void Four_in_a_Row<T>::display_board(){
     }
 }
 template <typename T>
-bool Four_in_a_Row<T> ::update_board(int x, int y, T symbol) {
-    if (x < 0 || x >= this->rows || y < 0 || y >= this->columns) {
-        if (symbol == ' '){
-            this->n_moves--;
-            this->board[x][y] = ' ';
+bool Four_in_a_Row<T>::update_board(int x, int y, T symbol) {
+    // Bounds check
+    if (y < 0 || y >= this->columns) {
+        return false;
+    }
+
+    // If trying to place a blank (undo move)
+    if (symbol == ' ') {
+        // Start from the top of the column and find the first non-empty cell to remove
+        for (int z = 0; z < this->rows; z++) {
+            if (this->board[z][y] != ' ') {
+                this->board[z][y] = ' ';
+                this->n_moves--;
+                return true;
+            }
         }
-        else {
+        return false; // Column was already empty
+    }
+
+    // Regular move: find the lowest empty spot in the column
+    for (int z = this->rows - 1; z >= 0; z--) {
+        if (this->board[z][y] == ' ') {
+            this->board[z][y] = toupper(symbol);
             this->n_moves++;
-            this->board[x][y] = toupper(symbol);
-        }
-        return false;
-    }
-    // Check if the cell is empty
-    if (this->board[x][y] != ' ') {
-        return false;
-    }
-    for (int z=4; z>=0;z-- ){
-        if (this->board[z][y]==' '){
-            this->board[z][y] = symbol;
-            this->n_moves+=1;
             return true;
         }
     }
-    cout << "Invalid move: Column is full." << endl;
+
+    // Column is full
     return false;
 }
 
@@ -141,6 +149,16 @@ template <typename T>
 bool Four_in_a_Row<T>::game_is_over() {
     return is_win() || is_draw();
 }
+
+
+template <typename T>
+class Four_in_a_Row_Player : public Player<T> {
+public:
+    Four_in_a_Row_Player (string name, T symbol);
+    void getmove(int& x, int& y) ;
+
+};
+
 template <typename T>
 Four_in_a_Row_Player<T>::Four_in_a_Row_Player(string name, T symbol) : Player<T>(name, symbol) {}
 
@@ -153,7 +171,6 @@ void Four_in_a_Row_Player<T>::getmove(int& x, int& y) {
 }
 
 
-/*
 template <typename T>
 class Four_in_a_a_Row_MinMax_Player : public Player<T> {
 public:
@@ -162,8 +179,10 @@ public:
     void getmove(int& x, int& y) override;
 
 private:
-    int calculateMinMax(T s, bool isMaximizing);
-    pair<int, int> getBestMove();
+    int calculateMinMax(T s, bool isMaximizing,int depth);
+    int getBestMove();
+    int countConsecutive(int row, int col, T s);
+    int evaluateBoard(T s);
 };
 
 
@@ -176,101 +195,110 @@ Four_in_a_a_Row_MinMax_Player<T>::Four_in_a_a_Row_MinMax_Player(T symbol): Playe
 
 template <typename T>
 void Four_in_a_a_Row_MinMax_Player<T>::getmove(int& x, int& y) {
-    if (!this->boardPtr) {
-        cerr << "Error: AI player is not linked to a board!" << endl;
-        return;
-    }
-    cout << "AI is thinking...\n";
-    pair<int, int> bestMove = getBestMove();
-    x = bestMove.first;
-    y = bestMove.second;
-
-    cout << "AI chose move: (" << x << ", " << y << ")\n";
+    int bestMove = getBestMove();
+    x = 0;
+    y = bestMove;
 }
-
-
 template <typename T>
-int Four_in_a_a_Row_MinMax_Player<T>::calculateMinMax(T s, bool isMaximizing) {
-    if (this->boardPtr->is_win()) {
-        return isMaximizing ? 1 : 3;
-    } else if (this->boardPtr->is_draw()) {
-        return 2;
+int Four_in_a_a_Row_MinMax_Player<T>::calculateMinMax(T s, bool isMaximizing, int depth) {
+    if (depth == 0 || this->boardPtr->is_win() || this->boardPtr->is_draw()) {
+        return evaluateBoard(s);
     }
 
     int bestValue = isMaximizing ? numeric_limits<int>::min() : numeric_limits<int>::max();
     T opponentSymbol = (s == 'X') ? 'O' : 'X';
 
-    for (int i = 0; i < 5; ++i) {
-        for (int j = 7; j >= 0; --j) {
-            if (this->boardPtr->update_board(i, j, s)) {
-                int value = calculateMinMax(opponentSymbol, !isMaximizing);
-                this->boardPtr->update_board(i, j, ' ');
+    for (int j = 0; j < 7; ++j) {
+        if (this->boardPtr->update_board(0, j, isMaximizing ? s : opponentSymbol)) {
+            int value = calculateMinMax(s, !isMaximizing, depth - 1);
+            this->boardPtr->update_board(0, j, ' '); // Undo move
 
-                if (isMaximizing) {
-                    bestValue = max(bestValue, value);
-                } else {
-                    bestValue = min(bestValue, value);
-                }
+            if (isMaximizing) {
+                bestValue = max(bestValue, value);
+            } else {
+                bestValue = min(bestValue, value);
             }
         }
     }
+
     return bestValue;
 }
 
 template <typename T>
-pair<int, int> Four_in_a_a_Row_MinMax_Player<T>::getBestMove() {
-    int bestValue = numeric_limits<int>::min(); // Start with worst value
-    pair<int, int> bestMove = {0, 0};        // Default invalid move
-    T opponentSymbol = (this->symbol == 'X') ? 'O' : 'X';
+int Four_in_a_a_Row_MinMax_Player<T>::evaluateBoard(T s) {
+    int score = 0;
 
-    // First, check if we can win in the next move
+    T opponentSymbol = (s == 'X') ? 'O' : 'X';
+
     for (int i = 0; i < 5; ++i) {
         for (int j = 0; j < 7; ++j) {
-            if (this->boardPtr->update_board(i, j, this->symbol)) {
-                if (this->boardPtr->is_win()) {
-                    this->boardPtr->update_board(i, j, ' '); // Undo move
-                    return {i, j}; // Winning move found
+            auto* fourInARowBoard = dynamic_cast<Four_in_a_Row<T>*>(this->boardPtr);
+            if (fourInARowBoard) {
+                if (fourInARowBoard->getCell(i, j) == s) {
+                    score += countConsecutive(i, j, s);
+                } else if (fourInARowBoard->getCell(i, j) == opponentSymbol) {
+                    score -= countConsecutive(i, j, opponentSymbol);
                 }
-                this->boardPtr->update_board(i, j, ' '); // Undo move
+            }
+
+        }
+    }
+
+    return score;
+}
+
+template <typename T>
+int Four_in_a_a_Row_MinMax_Player<T>::countConsecutive(int row, int col, T s) {
+    int count = 0;
+
+    const int directions[4][2] = {{0, 1}, {1, 0}, {1, 1}, {1, -1}};
+    auto* fourInARowBoard = dynamic_cast<Four_in_a_Row<T>*>(this->boardPtr);
+    if (fourInARowBoard) {
+        for (const auto& dir : directions) {
+            int consecutive = 0;
+
+            for (int k = 0; k < 4; ++k) {
+                int r = row + k * dir[0];
+                int c = col + k * dir[1];
+
+                if (r >= 0 && r < 5 && c >= 0 && c < 7 &&
+                    fourInARowBoard->getCell(r, c) == s) {
+                    ++consecutive;
+                } else {
+                    break;
+                }
+            }
+
+            // Assign scores based on consecutive matches
+            switch (consecutive) {
+                case 4: count += 1000; break; // Win
+                case 3: count += 50; break;  // Close to winning
+                case 2: count += 10; break;  // Small advantage
+            }
+        }
+    }
+    return count;
+}
+
+template <typename T>
+int Four_in_a_a_Row_MinMax_Player<T>::getBestMove() {
+    int bestMove = -1;
+    int bestValue = std::numeric_limits<int>::min();
+
+    for (int j = 0; j < 7; ++j) {
+        if (this->boardPtr->update_board(0, j, this->symbol)) {
+            int moveValue = calculateMinMax(this->symbol, false, 4); // Increase depth for better AI
+            this->boardPtr->update_board(0, j, ' '); // Undo move
+
+            if (moveValue >= bestValue) {
+                bestMove = j;
+                bestValue = moveValue;
             }
         }
     }
 
-    // Second, block opponent's winning move
-    for (int i = 0; i < 5; ++i) {
-        for (int j = 0; j < 7; ++j) {
-            if (this->boardPtr->update_board(i, j, opponentSymbol)) {
-                if (this->boardPtr->is_win()) {
-                    this->boardPtr->update_board(i, j, ' '); // Undo move
-                    return {i, j}; // Block opponent's winning move
-                }
-                this->boardPtr->update_board(i, j, ' '); // Undo move
-            }
-        }
-    }
-
-    // Use MinMax to find the best move
-    for (int i = 0; i < 5; ++i) {
-        for (int j = 0; j < 7; ++j) {
-            if (this->boardPtr->update_board(i, j, this->symbol)) { // Try move
-                int moveValue = calculateMinMax(this->symbol, false);
-                this->boardPtr->update_board(i, j, ' '); // Undo move
-                cout << "Move (" << i << ", " << j << ") has value: " << moveValue << "\n";
-
-                if (moveValue > bestValue) {
-                    bestMove = {i, j};
-                    bestValue = moveValue;
-                    cout << "Best move updated to (" << i << ", " << j << ") with value: " << bestValue << "\n";
-                }
-            }
-        }
-    }
-    return bestMove;
-}*/
-
-
-
-
+    return bestMove != -1 ? bestMove : 3; // Select middle if no move found
+}
 
 
 #endif //BOARDGAMEASS_FOUR_IN_A_ROW_H

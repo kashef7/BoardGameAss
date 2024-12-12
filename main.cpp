@@ -1,3 +1,4 @@
+// main.cpp
 #include <string>
 #include <limits>
 #include "PyramidXO.h"
@@ -6,6 +7,7 @@
 #include "Numerical_TicTacToe.h"
 #include "sus.h"
 using namespace std;
+
 template<typename T>
 Player<T>* getPlayer(const string& gameType, const char symbol) {
     char ch;
@@ -20,28 +22,28 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
             else if (gameType == "Word") return new WordXO_Player<T>(playerName, symbol);
             else if (gameType == "Four") return new Four_in_a_Row_Player<T>(playerName, symbol);
             else if (gameType == "Numerical") return new Numerical_TicTacToe_Player<T>(playerName, symbol);
-            else if (gameType=="SUS")return new SUS_Player<T>(playerName, symbol);
+            else if (gameType == "SUS") return new SUS_Player<T>(playerName, symbol);
         } else if (toupper(ch) == 'B') {
             if (gameType == "Pyramid") return new PyramidXO_Random_Player<T>(symbol);
             else if (gameType == "Word") return new WordXO_Random_Player<T>(symbol);
         } else if(toupper(ch) == 'C'){
-            //if (gameType=="Four")return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
+            if (gameType == "Four") return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
         }
         else {
             cout << "Please enter a valid input.\n";
         }
     }
 }
+
 int main() {
     Player<char>* players[2];
-    string player1Name , player2Name;
     char ch;
-    while(true){
+    while (true) {
         cout << "Welcome to the Arcade\n";
-        while(true){
+        while (true) {
             cout << "choose which game you want to play\nA)Pyramid X_O\nB)Word X_O\nC)Four in a row\nD)Numerical tictactoe\nE)SUS\nQ)Quit\n";
             cin >> ch;
-            if(toupper(ch) == 'A'){
+            if (toupper(ch) == 'A') {
                 auto* Pyramid_Board = new PyramidXO_Board<char>();
                 cout << "starting Pyramid X_O\n";
                 cout << "PLAYER 1\n";
@@ -54,7 +56,7 @@ int main() {
                 players[1] = nullptr;
                 delete Pyramid_Board;
             }
-            else if(toupper(ch) == 'B'){
+            else if (toupper(ch) == 'B') {
                 auto* Word_Board = new WordXO_Board<char>();
                 cout << "starting Word X_O\n";
                 cout << "PLAYER 1\n";
@@ -67,14 +69,16 @@ int main() {
                 players[1] = nullptr;
                 delete Word_Board;
             }
-            else if(toupper(ch) == 'C'){
-                /*/auto* Fourinrow_Board = new Four_in_a_Row<char>();
+            else if (toupper(ch) == 'C') {
+                auto* Fourinrow_Board = new Four_in_a_Row<char>();
                 cout << "Starting Four in a Row\n";
 
                 cout << "PLAYER 1\n";
                 players[0] = getPlayer<char>("Four", 'X');  // Create Player 1
                 cout << "PLAYER 2\n";
                 players[1] = getPlayer<char>("Four", 'O');  // Create Player 2
+
+                // Set the board for AI players
                 if (auto* aiPlayer = dynamic_cast<Four_in_a_a_Row_MinMax_Player<char>*>(players[0])) {
                     aiPlayer->setBoard(Fourinrow_Board);
                 }
@@ -87,9 +91,9 @@ int main() {
 
                 players[0] = nullptr;
                 players[1] = nullptr;
-                delete Fourinrow_Board;*/
+                delete Fourinrow_Board;
             }
-            else if(toupper(ch) == 'D'){
+            else if (toupper(ch) == 'D') {
                 auto* NumericTicTacToe_Board = new Numerical_TicTacToe<char>();
                 cout << "starting Numerical Tic Tac Toe\n";
                 cout << "PLAYER 1\n";
@@ -102,7 +106,7 @@ int main() {
                 players[1] = nullptr;
                 delete NumericTicTacToe_Board;
             }
-            else if(toupper(ch) == 'E'){
+            else if (toupper(ch) == 'E') {
                 auto* SUS_Board = new SUS<char>();
                 cout << "starting SUS\n";
                 cout << "PLAYER 1\n";
@@ -115,11 +119,11 @@ int main() {
                 players[1] = nullptr;
                 delete SUS_Board;
             }
-            else if(toupper(ch) == 'Q'){
+            else if (toupper(ch) == 'Q') {
                 cout << "Thank you for using this program";
                 break;
             }
-            else{
+            else {
                 cout << "Please enter a valid input\n";
                 continue;
             }
