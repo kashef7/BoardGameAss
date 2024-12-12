@@ -7,6 +7,8 @@
 #include "BoardGame_Classes.h"
 #include <iomanip>
 #include <cstdlib>
+#include <algorithm>
+#include <limits>
 template <typename T>
 class PyramidXO_Board : public Board<T>{
 public:
@@ -34,11 +36,18 @@ template <typename T>
 class PyramidXO_Random_Player : public RandomPlayer<T>{
 public:
     PyramidXO_Random_Player(T symbol);
+    void getmove(int& x,int& y);};
+
+
+template <typename T>
+class PyramidXO_Ai_Player : public Player<T>{
+private:
+    int calculateMinMax(T s, bool isMaximizing);
+    std::pair<int, int> getBestMove();
+public:
+    PyramidXO_Ai_Player(T symbol);
     void getmove(int& x,int& y);
 };
-
-
-
 
 
 
@@ -77,6 +86,11 @@ void PyramidXO_Board<T>::display_board() {
 
 template <typename T>
 bool PyramidXO_Board<T>::update_board(int x, int y, T symbol) {
+    if(symbol == ' '){
+        this->board[x][y] = ' ';
+        this->n_moves--;
+        return true;
+    }
     if ((x < 0 || y < 0 || x >= this->rows || y >= this->columns) ||
         (this->board[x][y] != ' ' ||
          ((x == 0 && y >= 1 && y <= 4) || (x == 1 && y >= 3 && y <= 4)))) {
@@ -137,6 +151,7 @@ PyramidXO_Player<T>::PyramidXO_Player(string n,T symbol):Player<T>(n,symbol){}
 
 template <typename T>
 void PyramidXO_Player<T>::getmove(int &x, int &y) {
+    cout << this->name << "'s Turn " <<endl;
     cout << "Enter x:" << endl;
     cin >> x;
     cout << "Enter y:" << endl;
@@ -156,9 +171,91 @@ void PyramidXO_Random_Player<T>::getmove(int &x, int &y) {
 
 
 
+template <typename T>
+PyramidXO_Ai_Player<T>::PyramidXO_Ai_Player(T symbol) :Player<T>(symbol) {
+    this->name = "Ai player";
+}
 
 
+template <typename T>
+int PyramidXO_Ai_Player<T>::calculateMinMax(T s, bool isMaximizing) {
+    if (this->boardPtr->is_win()) {
+        return isMaximizing ? -1 : 1;
+    } else if (this->boardPtr->is_draw()) {
+        return 0;
+    }
+    int bestValue = isMaximizing ? std::numeric_limits<int>::min() : std::numeric_limits<int>::max();
+    T opponentSymbol = (s == 'X') ? 'O' : 'X';
+    int colmns_Left = 0;
+    for(int i = 0; i < 3; i++) {
+        for (int j = 0; j <= colmns_Left; j++) {
+            if (this->boardPtr->update_board(i, j, s)) {
+                int value = calculateMinMax(opponentSymbol, !isMaximizing);
+                this->boardPtr->update_board(i, j, ' ');
+                if (isMaximizing) {
+                    bestValue = std::max(bestValue, value);
+                } else {
+                    bestValue = std::min(bestValue, value);
+                }
+            }
+        }
+        colmns_Left +=2;
+    }
+    return bestValue;
+}
+template <typename T>
+std::pair<int, int> PyramidXO_Ai_Player<T>::getBestMove() {
+    int bestValue = std::numeric_limits<int>::min();
+    std::pair<int, int> bestMove = {-1, -1};
+    T opponentSymbol = (this->symbol == 'X') ? 'O' : 'X';
+    int colmns_Left = 0;
+    for(int i = 0; i < 3; i++) {
+        for (int j = 0; j <= colmns_Left; j++) {
+            if (this->boardPtr->update_board(i, j, this->symbol)) {
+                if (this->boardPtr->is_win()) {
+                    this->boardPtr->update_board(i, j, ' ');
+                    return {i, j};
+                }
+                this->boardPtr->update_board(i, j, ' ');
+            }
+        }
+        colmns_Left+=2;
+    }
+    colmns_Left = 0;
+    for(int i = 0; i < 3; i++) {
+        for (int j = 0; j <= colmns_Left; j++) {
+            if (this->boardPtr->update_board(i, j, opponentSymbol)) {
+                if (this->boardPtr->is_win()) {
+                    this->boardPtr->update_board(i, j, ' ');
+                    return {i, j};
+                }
+                this->boardPtr->update_board(i, j, ' ');
+            }
+        }
+        colmns_Left+=2;
+    }
+    colmns_Left = 0;
+    for(int i = 0; i < 3; i++) {
+        for (int j = 0; j <= colmns_Left; j++) {
+            if (this->boardPtr->update_board(i, j, this->symbol)) {
+                int moveValue = calculateMinMax(this->symbol, false);
+                this->boardPtr->update_board(i, j, ' ');
+                if (moveValue > bestValue) {
+                    bestMove = {i, j};
+                    bestValue = moveValue;
+                }
+            }
+        }
+        colmns_Left+=2;
+    }
+    return bestMove;
+}
 
 
-
+template <typename T>
+void PyramidXO_Ai_Player<T>::getmove(int &x, int &y) {
+    std::pair<int, int> bestMove = getBestMove();
+    x = bestMove.first;
+    y = bestMove.second;
+}
 #endif //A2_T456_PYRAMIDXO_H

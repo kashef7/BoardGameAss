@@ -13,4 +13,5 @@ add_executable(BoardGameAss
         WordXO.h
         Numerical_TicTacToe.h
         Numerical_TicTacToe.h
+        UltimateTicTacToe.h
 )

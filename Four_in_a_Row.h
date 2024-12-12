@@ -244,7 +244,8 @@ int Four_in_a_a_Row_MinMax_Player<T>::evaluateBoard(T s) {
         }
     }
 
-    return score;
+    return score;\
+
 }
 
 template <typename T>

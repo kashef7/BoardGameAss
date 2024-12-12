@@ -8,93 +8,96 @@
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
-					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="BoardGameAss">
-				<Option output="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/BoardGameAss.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug"/>
+				<Option output="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/BoardGameAss.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/."/>
+					<Add directory="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/."/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/include"/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../include"/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 BoardGameAss"/>
-					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 BoardGameAss"/>
+					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="BoardGameAss/fast">
-				<Option output="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/BoardGameAss.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug"/>
+				<Option output="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/BoardGameAss.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
 				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/."/>
+					<Add directory="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/."/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/include"/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/../../../../include"/>
 					<Add directory="C:/msys64/mingw64/bin/../lib/gcc/x86_64-w64-mingw32/13.2.0/include-fixed"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 BoardGameAss/fast"/>
-					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 BoardGameAss/fast"/>
+					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
-					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug"/>
+				<Option working_dir="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
-					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/A2_T456/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<Build command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="C:/PROGRA~1/CODEBL~1/MinGW/bin/mingw32-make.exe -f &quot;C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/BoardGame_Classes.h">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/BoardGame_Classes.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/Four_in_a_Row.h">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/Four_in_a_Row.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/Numerical_TicTacToe.h">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/Numerical_TicTacToe.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/PyramidXO.h">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/PyramidXO.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/WordXO.h">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/UltimateTicTacToe.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/main.cpp">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/WordXO.h">
 			<Option target="BoardGameAss"/>
 		</Unit>
-		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/A2_T456/CMakeLists.txt">
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/main.cpp">
+			<Option target="BoardGameAss"/>
+		</Unit>
+		<Unit filename="C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>

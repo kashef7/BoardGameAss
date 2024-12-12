@@ -23,11 +23,14 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
             else if (gameType == "Four") return new Four_in_a_Row_Player<T>(playerName, symbol);
             else if (gameType == "Numerical") return new Numerical_TicTacToe_Player<T>(playerName, symbol);
             else if (gameType == "SUS") return new SUS_Player<T>(playerName, symbol);
+            else if (gameType == "Ultimate") return new Ultimate_Player<T>(playerName, symbol);
         } else if (toupper(ch) == 'B') {
             if (gameType == "Pyramid") return new PyramidXO_Random_Player<T>(symbol);
             else if (gameType == "Word") return new WordXO_Random_Player<T>(symbol);
+            else if (gameType == "Ultimate") return new Ultimate_Random_Player<T>(symbol);
         } else if(toupper(ch) == 'C'){
             if (gameType == "Four") return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
+            else if (gameType == "Pyramid") return new PyramidXO_Ai_Player<T>(symbol);
         }
         else {
             cout << "Please enter a valid input.\n";
@@ -41,7 +44,7 @@ int main() {
     while (true) {
         cout << "Welcome to the Arcade\n";
         while (true) {
-            cout << "choose which game you want to play\nA)Pyramid X_O\nB)Word X_O\nC)Four in a row\nD)Numerical tictactoe\nE)SUS\nQ)Quit\n";
+            cout << "choose which game you want to play\nA)Pyramid X_O\nB)Word X_O\nC)Four in a row\nD)Numerical tictactoe\nE)SUS\nF)UltimateTicTacToe\nQ)Quit\n";
             cin >> ch;
             if (toupper(ch) == 'A') {
                 auto* Pyramid_Board = new PyramidXO_Board<char>();
@@ -118,6 +121,19 @@ int main() {
                 players[0] = nullptr;
                 players[1] = nullptr;
                 delete SUS_Board;
+            }
+            else if (toupper(ch) == 'F') {
+                auto* Ultimate_Board = new ::Ultimate_Board<char>();
+                cout << "starting Ultimate Tic Tac Toe\n";
+                cout << "PLAYER 1\n";
+                players[0] = getPlayer<char>("Ultimate",'X');
+                cout << "PLAYER 2\n";
+                players[1] = getPlayer<char>("Ultimate",'O');
+                GameManager<char> Ultimate(Ultimate_Board,players);
+                Ultimate.run();
+                players[0] = nullptr;
+                players[1] = nullptr;
+                delete Ultimate_Board;
             }
             else if (toupper(ch) == 'Q') {
                 cout << "Thank you for using this program";
