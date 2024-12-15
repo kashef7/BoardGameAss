@@ -162,10 +162,33 @@ WordXO_Player<T>::WordXO_Player(string name, T symbol):Player<T>(name,symbol) {}
 
 template <typename T>
 void WordXO_Player<T>::getmove(int &x, int &y) {
-    cout << "Enter x:" << endl;
-    cin >> x;
-    cout << "Enter y:" << endl;
-    cin >> y;
+    cout << this->name << "'s Turn " << endl;
+
+    while (true) {
+        cout << "Enter x: ";
+        cin >> x;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            break;
+        }
+    }
+    while (true) {
+        cout << "Enter y: ";
+        cin >> y;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            break;
+        }
+    }
     cout << "Enter letter:" << endl;
     cin >> this->symbol;
 }

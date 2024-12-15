@@ -5,6 +5,7 @@
 #include "WordXO.h"
 #include "Four_in_a_Row.h"
 #include "Numerical_TicTacToe.h"
+#include "UltimateTicTacToe.h"
 #include "sus.h"
 using namespace std;
 
