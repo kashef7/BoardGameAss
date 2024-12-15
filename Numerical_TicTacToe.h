@@ -73,14 +73,12 @@ bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
 
     // Check number validity
     int num;
-    if (ComputerOrNot){
-       char number =char(rand() %10);
-       num = number-'0';
-       cout << "here";
+    /*if (ComputerOrNot){
+        number =rand() %10;
     }
-    else{
+    else{*/
         num = symbol - '0';
-    }
+    //}
     auto it = find(used_numbers.begin(), used_numbers.end(), num);
     if (it == used_numbers.end()) {
         return false;
