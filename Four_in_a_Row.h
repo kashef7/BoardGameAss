@@ -238,7 +238,7 @@ int Four_in_a_a_Row_MinMax_Player<T>::evaluateBoard(T s) {
         }
     }
 
-    return score;\
+    return score;
 
 }
 
@@ -283,7 +283,7 @@ int Four_in_a_a_Row_MinMax_Player<T>::WhoWillGonnaWin(int row, int col, T s) {
 template <typename T>
 int Four_in_a_a_Row_MinMax_Player<T>::getBestMove() {
     int bestMove = -1;
-    int bestValue = std::numeric_limits<int>::min();
+    int bestValue = numeric_limits<int>::min();
 
     for (int j = 0; j < 7; ++j) {
         if (this->boardPtr->update_board(0, j, this->symbol)) {
