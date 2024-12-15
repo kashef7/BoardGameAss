@@ -6,12 +6,14 @@ using namespace std;
 
 template <typename T>
 class Numerical_TicTacToe :public Board<T> {
-private:
-    vector<int> used_numbers = {1,2,3,4,5,6,7,8,9};
-    int current_player = 1;
 
 public:
+    vector<int> used_numbers = {1,2,3,4,5,6,7,8,9};
+    int current_player = 1;
+    bool ComputerOrNot;
     Numerical_TicTacToe();
+
+    bool iscomputer();
 
     void display_board();
     bool update_board(int x,int y,T symbol);
@@ -70,19 +72,25 @@ bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
     }
 
     // Check number validity
-    int num = symbol - '0';
+    int num;
+    if (ComputerOrNot){
+       char number =char(rand() %10);
+       num = number-'0';
+       cout << "here";
+    }
+    else{
+        num = symbol - '0';
+    }
     auto it = find(used_numbers.begin(), used_numbers.end(), num);
     if (it == used_numbers.end()) {
         return false;
     }
 
-    // Check player's number type (odd/even)
     if ((current_player % 2 == 1 && num % 2 == 0) ||
         (current_player % 2 == 0 && num % 2 == 1)) {
         return false;
     }
 
-    // Update board
     this->board[x][y] = symbol;
     used_numbers.erase(it);
     this->n_moves++;
@@ -141,5 +149,28 @@ void Numerical_TicTacToe_Player<T>::getmove(int& x, int& y) {
     cin >> number >> x >> y;
     this->symbol = number + '0';
 }
+
+// Random Player class for Numerical Tic-Tac-Toe
+template <typename T>
+class Numerical_TicTacToe_Random_Player : public RandomPlayer<T>{
+public:
+    Numerical_TicTacToe_Random_Player(T symbol);
+    void getmove(int &x, int &y) ;
+};
+
+
+template <typename T>
+Numerical_TicTacToe_Random_Player<T>::Numerical_TicTacToe_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
+    this->dimension = 3;
+    this->name = "Random Computer Player";
+    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+}
+
+template <typename T>
+void Numerical_TicTacToe_Random_Player<T>::getmove(int& x, int& y){
+    x = rand() % this->dimension;
+    y = rand() % this->dimension;
+}
+
 
 #endif //BOARDGAMEASS_NUMERICAL_TICTACTOE_H
