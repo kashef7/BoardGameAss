@@ -7,7 +7,7 @@
 #include "Numerical_TicTacToe.h"
 #include "sus.h"
 using namespace std;
-static bool ComputerOrNotMain= false;
+
 template<typename T>
 Player<T>* getPlayer(const string& gameType, const char symbol) {
     char ch;
@@ -26,12 +26,6 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
         } else if (toupper(ch) == 'B') {
             if (gameType == "Pyramid") return new PyramidXO_Random_Player<T>(symbol);
             else if (gameType == "Word") return new WordXO_Random_Player<T>(symbol);
-            else if (gameType == "Four") return new Four_in_a_Row_Random_Player<T>(symbol);
-            else if (gameType == "SUS") return new SUS_Random_Player<T>(symbol);
-            else if (gameType == "Numerical"){
-                ComputerOrNotMain= true;
-                return new Numerical_TicTacToe_Random_Player<T>(symbol);
-            }
         } else if(toupper(ch) == 'C'){
             if (gameType == "Four") return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
         }
@@ -40,6 +34,7 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
         }
     }
 }
+
 int main() {
     Player<char>* players[2];
     char ch;
@@ -105,9 +100,6 @@ int main() {
                 players[0] = getPlayer<char>("Numerical",'X');
                 cout << "PLAYER 2\n";
                 players[1] = getPlayer<char>("Numerical",'O');
-                if (ComputerOrNotMain){
-                    NumericTicTacToe_Board->ComputerOrNot= true;
-                }
                 GameManager<char> Numerical(NumericTicTacToe_Board,players);
                 Numerical.run();
                 players[0] = nullptr;
