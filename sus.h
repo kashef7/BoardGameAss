@@ -1,15 +1,11 @@
-//
-// Created by User on 12/9/2024.
-//
-
-#ifndef BOARDGAMEASS_SUS_H
-#define BOARDGAMEASS_SUS_H
-
+#ifndef THEGAME_H
+#define THEGAME_H
 #include "BoardGame_Classes.h"
-
+#include <iomanip>
+#include <cstdlib>
 using namespace std;
 
-int globalmoves=0;
+inline int globalmoves = 0;
 
 template <typename T>
 class SUS:public Board<T> {
@@ -25,6 +21,10 @@ public:
     bool game_is_over();
     bool** counted;
 
+    bool player2iswin();
+
+    int getPlayer1Count() const;
+    int getPlayer2Count() const;
 };
 template <typename T>
 class SUS_Player : public Player<T> {
@@ -52,6 +52,18 @@ SUS<T>::SUS() {
     globalmoves=0;
 }
 
+template <typename T>
+int SUS<T>::getPlayer1Count() const {
+    return countplayer1;
+}
+
+template <typename T>
+int SUS<T>::getPlayer2Count() const {
+    return countplayer2;
+}
+
+
+
 // Display the board and the pieces on it
 template <typename T>
 void SUS<T>::display_board() {
@@ -65,6 +77,17 @@ void SUS<T>::display_board() {
     }
     cout << endl;
 }
+
+template <typename T>
+bool SUS<T>::player2iswin(){
+    if(countplayer2>countplayer1 && this->n_moves>=9){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
 
 template <typename T>
 bool SUS<T>::update_board(int x, int y, T mark) {
@@ -120,7 +143,7 @@ bool SUS<T>::update_board(int x, int y, T mark) {
 
 template <typename T>
 bool SUS<T>:: is_win() {
-     if (this->n_moves == 9) {
+    if (this->n_moves == 9) {
         if (countplayer1 > countplayer2) {
             return true;
         }
@@ -132,19 +155,20 @@ bool SUS<T>:: is_win() {
         else {
             this->n_moves++;
             globalmoves++;
+            //QMessageBox::information(this, "Game Over", "It's a draw!");
             return false;
         }
-     }
-     else if (this->n_moves == 10) {
+    }
+    else if (this->n_moves == 10) {
         return true;
-     }
-     else{
-         return false;
-     }
+    }
+    else{
+        return false;
+    }
 }
 template <typename T>
 bool SUS<T>::is_draw(){
-    if (countplayer1==countplayer2 && this->n_moves==10) {
+    if (countplayer1==countplayer2 && this->n_moves==10 && !this->player2iswin()) {
         return true;
     }
     else{
@@ -181,4 +205,30 @@ void SUS_Player<T>::getmove(int& x, int& y) {
 }
 
 
-#endif //BOARDGAMEASS_SUS_H
+template <typename T>
+class SUS_Random_Player : public RandomPlayer<T>{
+public:
+    SUS_Random_Player (T symbol);
+    void getmove(int &x, int &y) ;
+};
+
+
+template <typename T>
+SUS_Random_Player<T>::SUS_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
+    this->dimension = 3;
+    this->name = "Random Computer Player";
+    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+}
+
+template <typename T>
+void SUS_Random_Player<T>::getmove(int& x, int& y) {
+    x = rand() % this->dimension;  // Random number between 0 and 2
+    y = rand() % this->dimension;
+}
+
+
+
+
+
+#endif // THEGAME_H
+

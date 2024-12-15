@@ -301,5 +301,24 @@ int Four_in_a_a_Row_MinMax_Player<T>::getBestMove() {
     return bestMove != -1 ? bestMove : 3; // Select middle if no move found
 }
 
+template <typename T>
+class Four_in_a_Row_Random_Player : public RandomPlayer<T>{
+public:
+    Four_in_a_Row_Random_Player (T symbol);
+    void getmove(int &x, int &y) ;
+};
 
+
+template <typename T>
+Four_in_a_Row_Random_Player<T>::Four_in_a_Row_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
+    this->dimension = 7;
+    this->name = "Random Computer Player";
+    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+}
+
+template <typename T>
+void Four_in_a_Row_Random_Player<T>::getmove(int& x, int& y) {
+    x = 0;  // Random number between 0 and 2
+    y = rand() % this->dimension;
+}
 #endif //BOARDGAMEASS_FOUR_IN_A_ROW_H
