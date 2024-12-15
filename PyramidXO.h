@@ -18,6 +18,7 @@ public:
     bool is_win();
     bool is_draw();
     bool game_is_over();
+
     void getcell(int x, int y){
         cout << this->board[x][y] << endl;
     }

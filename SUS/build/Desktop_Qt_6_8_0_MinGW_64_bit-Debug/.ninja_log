@@ -1,0 +1,19 @@
+# ninja log v6
+2	517	7559881242042387	Sus_autogen/timestamp	3b5d4aa84d19a767
+2	517	7559881242042387	Sus_autogen/mocs_compilation.cpp	3b5d4aa84d19a767
+2	517	7559881242042387	D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/Sus_autogen/timestamp	3b5d4aa84d19a767
+2	517	7559881242042387	D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/Sus_autogen/mocs_compilation.cpp	3b5d4aa84d19a767
+521	2390	7559881242625543	CMakeFiles/Sus.dir/Sus_autogen/mocs_compilation.cpp.obj	511f4c2da0cfbb20
+524	2440	7559881242625543	CMakeFiles/Sus.dir/main.cpp.obj	eb68fe5d4853029c
+530	2540	7559881242625543	CMakeFiles/Sus.dir/playerselector.cpp.obj	d1dd25a4bcf17e9b
+527	2608	7559881242625543	CMakeFiles/Sus.dir/mainwindow.cpp.obj	469e94a715cd6490
+2608	2763	7559881263524609	Sus.exe	d0f8b64fc08ac7a6
+6	1766	7559899652537914	Sus_autogen/timestamp	3b5d4aa84d19a767
+6	1766	7559899652537914	Sus_autogen/mocs_compilation.cpp	3b5d4aa84d19a767
+6	1766	7559899652537914	D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/Sus_autogen/timestamp	3b5d4aa84d19a767
+6	1766	7559899652537914	D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug/Sus_autogen/mocs_compilation.cpp	3b5d4aa84d19a767
+1767	3569	7559899653009443	CMakeFiles/Sus.dir/Sus_autogen/mocs_compilation.cpp.obj	511f4c2da0cfbb20
+1787	3614	7559899653115806	CMakeFiles/Sus.dir/main.cpp.obj	eb68fe5d4853029c
+1789	3796	7559899653115806	CMakeFiles/Sus.dir/mainwindow.cpp.obj	469e94a715cd6490
+1791	3855	7559899653115806	CMakeFiles/Sus.dir/playerselector.cpp.obj	d1dd25a4bcf17e9b
+3855	4210	7559899673777882	Sus.exe	d0f8b64fc08ac7a6

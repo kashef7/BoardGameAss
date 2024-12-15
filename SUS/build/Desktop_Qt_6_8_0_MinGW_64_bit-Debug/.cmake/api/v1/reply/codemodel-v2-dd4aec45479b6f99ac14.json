@@ -1,0 +1,79 @@
+{
+	"configurations" : 
+	[
+		{
+			"directories" : 
+			[
+				{
+					"build" : ".",
+					"hasInstallRule" : true,
+					"jsonFile" : "directory-.-Debug-05d10661ffd9e6c1748f.json",
+					"minimumCMakeVersion" : 
+					{
+						"string" : "3.16"
+					},
+					"projectIndex" : 0,
+					"source" : ".",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"name" : "Debug",
+			"projects" : 
+			[
+				{
+					"directoryIndexes" : 
+					[
+						0
+					],
+					"name" : "Sus",
+					"targetIndexes" : 
+					[
+						0,
+						1,
+						2
+					]
+				}
+			],
+			"targets" : 
+			[
+				{
+					"directoryIndex" : 0,
+					"id" : "Sus::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Sus-Debug-d26b3a2f72319949a7b5.json",
+					"name" : "Sus",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Sus_autogen::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Sus_autogen-Debug-2d71023bcd9fa475a188.json",
+					"name" : "Sus_autogen",
+					"projectIndex" : 0
+				},
+				{
+					"directoryIndex" : 0,
+					"id" : "Sus_autogen_timestamp_deps::@6890427a1f51a3e7e1df",
+					"jsonFile" : "target-Sus_autogen_timestamp_deps-Debug-96b4b0d7e111561033fe.json",
+					"name" : "Sus_autogen_timestamp_deps",
+					"projectIndex" : 0
+				}
+			]
+		}
+	],
+	"kind" : "codemodel",
+	"paths" : 
+	{
+		"build" : "D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS/build/Desktop_Qt_6_8_0_MinGW_64_bit-Debug",
+		"source" : "D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/SUS"
+	},
+	"version" : 
+	{
+		"major" : 2,
+		"minor" : 7
+	}
+}
