@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss
+# Install script for directory: D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")

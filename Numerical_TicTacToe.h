@@ -6,12 +6,12 @@ using namespace std;
 
 template <typename T>
 class Numerical_TicTacToe :public Board<T> {
-private:
-    vector<int> used_numbers = {1,2,3,4,5,6,7,8,9};
-    int current_player = 1;
 
 public:
+    vector<int> used_numbers = {1,2,3,4,5,6,7,8,9};
+    int current_player = 1;
     Numerical_TicTacToe();
+
 
     void display_board();
     bool update_board(int x,int y,T symbol);
@@ -59,30 +59,27 @@ void Numerical_TicTacToe<T>::display_board() {
 
 template <typename T>
 bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
-    // Check board boundaries
+
     if (x < 0 || x >= this->rows || y < 0 || y >= this->columns) {
         return false;
     }
 
-    // Check if cell is empty
     if (this->board[x][y] != '0') {
         return false;
     }
 
-    // Check number validity
-    int num = symbol - '0';
+    int num;
+    num = symbol - '0';
     auto it = find(used_numbers.begin(), used_numbers.end(), num);
     if (it == used_numbers.end()) {
         return false;
     }
 
-    // Check player's number type (odd/even)
     if ((current_player % 2 == 1 && num % 2 == 0) ||
         (current_player % 2 == 0 && num % 2 == 1)) {
         return false;
     }
 
-    // Update board
     this->board[x][y] = symbol;
     used_numbers.erase(it);
     this->n_moves++;
@@ -93,7 +90,7 @@ bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
 
 template <typename T>
 bool Numerical_TicTacToe<T>::is_win() {
-    // Check rows
+
     for (int i = 0; i < this->rows; i++) {
         int row_sum = (this->board[i][0] - '0') +(this->board[i][1] - '0') +(this->board[i][2] - '0');
         if (row_sum == 15 && this->board[i][0]!='0' && this->board[i][1]!=0 && this->board[i][2] !='0') {
@@ -107,7 +104,6 @@ bool Numerical_TicTacToe<T>::is_win() {
         }
     }
 
-    // Check diagonals
     int diagonal1_sum = (this->board[0][0] - '0') +(this->board[1][1] - '0') +(this->board[2][2] - '0');
     int diagonal2_sum = (this->board[0][2] - '0') +(this->board[1][1] - '0') +(this->board[2][0] - '0');
     if (diagonal1_sum == 15 && this->board[0][0]!='0' && this->board[1][1]!=0 && this->board[2][2]!='0'){
@@ -141,5 +137,31 @@ void Numerical_TicTacToe_Player<T>::getmove(int& x, int& y) {
     cin >> number >> x >> y;
     this->symbol = number + '0';
 }
+
+
+template <typename T>
+class Numerical_TicTacToe_Random_Player : public RandomPlayer<T>{
+public:
+    Numerical_TicTacToe_Random_Player(T symbol);
+    void getmove(int &x, int &y) ;
+};
+
+
+template <typename T>
+Numerical_TicTacToe_Random_Player<T>::Numerical_TicTacToe_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
+    this->dimension = 3;
+    this->name = "Random Computer Player";
+    srand(static_cast<unsigned int>(time(0)));
+}
+
+
+
+template <typename T>
+void Numerical_TicTacToe_Random_Player<T>::getmove(int& x, int& y){
+    x = rand() % this->dimension;
+    y = rand() % this->dimension;
+    this->symbol = (rand() % 9+1) + '0';
+}
+
 
 #endif //BOARDGAMEASS_NUMERICAL_TICTACTOE_H

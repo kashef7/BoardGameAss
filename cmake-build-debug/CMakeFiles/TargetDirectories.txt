@@ -1,3 +1,3 @@
-C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/CMakeFiles/BoardGameAss.dir
-C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/Elkashef/CLionProjects/OOP/BoardGameAss/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/cmake-build-debug/CMakeFiles/BoardGameAss.dir
+D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/cmake-build-debug/CMakeFiles/edit_cache.dir
+D:/FCAI-CU/YEAR 2/SEMSTER 1/BoardGameAss/cmake-build-debug/CMakeFiles/rebuild_cache.dir
