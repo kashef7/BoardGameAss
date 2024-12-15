@@ -29,6 +29,7 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
             else if (gameType == "Numerical") return new Numerical_TicTacToe_Random_Player<T>(symbol);
             else if (gameType == "SUS") return new SUS_Random_Player<T>(symbol);
             else if (gameType == "Four") return new Four_in_a_Row_Random_Player<T>(symbol);
+
         } else if(toupper(ch) == 'C'){
             if (gameType == "Four") return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
         }

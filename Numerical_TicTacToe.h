@@ -154,6 +154,8 @@ Numerical_TicTacToe_Random_Player<T>::Numerical_TicTacToe_Random_Player(T symbol
     srand(static_cast<unsigned int>(time(0)));
 }
 
+
+
 template <typename T>
 void Numerical_TicTacToe_Random_Player<T>::getmove(int& x, int& y){
     x = rand() % this->dimension;

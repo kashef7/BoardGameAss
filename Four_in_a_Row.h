@@ -315,6 +315,8 @@ Four_in_a_Row_Random_Player<T>::Four_in_a_Row_Random_Player(T symbol) : RandomPl
     srand(static_cast<unsigned int>(time(0)));
 }
 
+
+
 template <typename T>
 void Four_in_a_Row_Random_Player<T>::getmove(int& x, int& y) {
     x = 0;

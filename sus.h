@@ -202,6 +202,8 @@ void SUS_Player<T>::getmove(int& x, int& y) {
 }
 
 
+
+
 template <typename T>
 class SUS_Random_Player : public RandomPlayer<T>{
 public:
