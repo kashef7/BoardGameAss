@@ -37,7 +37,7 @@ template <typename T>
 SUS<T>::SUS() {
     this->rows = this->columns = 3;
     this->board = new char*[this->rows];
-    this->counted = new bool*[this->rows]; // Initialize the counted array
+    this->counted = new bool*[this->rows];
 
     for (int i = 0; i < this->rows; i++) {
         this->board[i] = new char[this->columns];
@@ -64,7 +64,6 @@ int SUS<T>::getPlayer2Count() const {
 
 
 
-// Display the board and the pieces on it
 template <typename T>
 void SUS<T>::display_board() {
     for (int i = 0; i < this->rows; i++) {
@@ -102,10 +101,9 @@ bool SUS<T>::update_board(int x, int y, T mark) {
             this->board[x][y] = toupper(mark);
         }
 
-        // Check for "S-U-S" sequences
         for (int i = 0; i < this->rows; i++) {
             if (!counted[i][1] && this->board[i][0] == 'S' && this->board[i][1] == 'U' && this->board[i][2] == 'S') {
-                counted[i][1] = true; // Mark the sequence as counted
+                counted[i][1] = true;
                 if (mark == 'S') countplayer1++;
                 else if (mark == 'U') countplayer2++;
             }
@@ -113,13 +111,13 @@ bool SUS<T>::update_board(int x, int y, T mark) {
 
         for (int i = 0; i < this->columns; i++) {
             if (!counted[1][i] && this->board[0][i] == 'S' && this->board[1][i] == 'U' && this->board[2][i] == 'S') {
-                counted[1][i] = true; // Mark the sequence as counted
+                counted[1][i] = true;
                 if (mark == 'S') countplayer1++;
                 else if (mark == 'U') countplayer2++;
             }
         }
 
-        if (!counted[1][1]) {
+        if (true) {
             if (this->board[0][0] == 'S' && this->board[1][1] == 'U' && this->board[2][2] == 'S') {
                 counted[1][1] = true;
                 if (mark == 'S') countplayer1++;
@@ -155,7 +153,6 @@ bool SUS<T>:: is_win() {
         else {
             this->n_moves++;
             globalmoves++;
-            //QMessageBox::information(this, "Game Over", "It's a draw!");
             return false;
         }
     }
@@ -217,12 +214,12 @@ template <typename T>
 SUS_Random_Player<T>::SUS_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
     this->dimension = 3;
     this->name = "Random Computer Player";
-    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+    srand(static_cast<unsigned int>(time(0)));
 }
 
 template <typename T>
 void SUS_Random_Player<T>::getmove(int& x, int& y) {
-    x = rand() % this->dimension;  // Random number between 0 and 2
+    x = rand() % this->dimension;
     y = rand() % this->dimension;
 }
 

@@ -10,10 +10,8 @@ class Numerical_TicTacToe :public Board<T> {
 public:
     vector<int> used_numbers = {1,2,3,4,5,6,7,8,9};
     int current_player = 1;
-    bool ComputerOrNot;
     Numerical_TicTacToe();
 
-    bool iscomputer();
 
     void display_board();
     bool update_board(int x,int y,T symbol);
@@ -61,24 +59,17 @@ void Numerical_TicTacToe<T>::display_board() {
 
 template <typename T>
 bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
-    // Check board boundaries
+
     if (x < 0 || x >= this->rows || y < 0 || y >= this->columns) {
         return false;
     }
 
-    // Check if cell is empty
     if (this->board[x][y] != '0') {
         return false;
     }
 
-    // Check number validity
     int num;
-    /*if (ComputerOrNot){
-        number =rand() %10;
-    }
-    else{*/
-        num = symbol - '0';
-    //}
+    num = symbol - '0';
     auto it = find(used_numbers.begin(), used_numbers.end(), num);
     if (it == used_numbers.end()) {
         return false;
@@ -99,7 +90,7 @@ bool Numerical_TicTacToe<T>::update_board(int x, int y, T symbol) {
 
 template <typename T>
 bool Numerical_TicTacToe<T>::is_win() {
-    // Check rows
+
     for (int i = 0; i < this->rows; i++) {
         int row_sum = (this->board[i][0] - '0') +(this->board[i][1] - '0') +(this->board[i][2] - '0');
         if (row_sum == 15 && this->board[i][0]!='0' && this->board[i][1]!=0 && this->board[i][2] !='0') {
@@ -113,7 +104,6 @@ bool Numerical_TicTacToe<T>::is_win() {
         }
     }
 
-    // Check diagonals
     int diagonal1_sum = (this->board[0][0] - '0') +(this->board[1][1] - '0') +(this->board[2][2] - '0');
     int diagonal2_sum = (this->board[0][2] - '0') +(this->board[1][1] - '0') +(this->board[2][0] - '0');
     if (diagonal1_sum == 15 && this->board[0][0]!='0' && this->board[1][1]!=0 && this->board[2][2]!='0'){
@@ -148,7 +138,7 @@ void Numerical_TicTacToe_Player<T>::getmove(int& x, int& y) {
     this->symbol = number + '0';
 }
 
-// Random Player class for Numerical Tic-Tac-Toe
+
 template <typename T>
 class Numerical_TicTacToe_Random_Player : public RandomPlayer<T>{
 public:
@@ -161,13 +151,14 @@ template <typename T>
 Numerical_TicTacToe_Random_Player<T>::Numerical_TicTacToe_Random_Player(T symbol) : RandomPlayer<T>(symbol) {
     this->dimension = 3;
     this->name = "Random Computer Player";
-    srand(static_cast<unsigned int>(time(0)));  // Seed the random number generator
+    srand(static_cast<unsigned int>(time(0)));
 }
 
 template <typename T>
 void Numerical_TicTacToe_Random_Player<T>::getmove(int& x, int& y){
     x = rand() % this->dimension;
     y = rand() % this->dimension;
+    this->symbol = (rand() % 9+1) + '0';
 }
 
 
