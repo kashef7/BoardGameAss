@@ -6,6 +6,7 @@
 #include "Four_in_a_Row.h"
 #include "Numerical_TicTacToe.h"
 #include "UltimateTicTacToe.h"
+#include "Game3.h"
 #include "sus.h"
 using namespace std;
 
@@ -25,6 +26,9 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
             else if (gameType == "Numerical") return new Numerical_TicTacToe_Player<T>(playerName, symbol);
             else if (gameType == "SUS") return new SUS_Player<T>(playerName, symbol);
             else if (gameType == "Ultimate") return new Ultimate_Player<T>(playerName, symbol);
+            else if (gameType == "5x5") return new TicTacToeHumanPlayer<T>(playerName, symbol);
+            else if (gameType == "Misere") return new MisereTicTacToeHumanPlayer<T>(playerName, symbol);
+            
         } else if (toupper(ch) == 'B') {
             if (gameType == "Pyramid") return new PyramidXO_Random_Player<T>(symbol);
             else if (gameType == "Word") return new WordXO_Random_Player<T>(symbol);
@@ -32,6 +36,8 @@ Player<T>* getPlayer(const string& gameType, const char symbol) {
             else if (gameType == "SUS") return new SUS_Random_Player<T>(symbol);
             else if (gameType == "Four") return new Four_in_a_Row_Random_Player<T>(symbol);
             else if (gameType == "Ultimate") return new Ultimate_Random_Player<T>(symbol);
+            else if (gameType == "5x5") return new TicTacToeRandomPlayer<T>(symbol);
+            else if (gameType == "Misere") return new MisereTicTacToeRandomPlayer<T>(symbol);
 
         } else if(toupper(ch) == 'C'){
             if (gameType == "Four") return new Four_in_a_a_Row_MinMax_Player<T>(symbol);
@@ -49,7 +55,7 @@ int main() {
     while (true) {
         cout << "Welcome to the Arcade\n";
         while (true) {
-            cout << "choose which game you want to play\nA)Pyramid X_O\nB)Word X_O\nC)Four in a row\nD)Numerical tictactoe\nE)SUS\nF)UltimateTicTacToe\nQ)Quit\n";
+            cout << "choose which game you want to play\nA)Pyramid X_O\nB)Word X_O\nC)Four in a row\nD)Numerical tictactoe\nE)SUS\nF)UltimateTicTacToe\nG) 5x5 Tic Tac Toe \n H) MisereTicTacToe\n  Q)Quit\n";
             cin >> ch;
             if (toupper(ch) == 'A') {
                 auto* Pyramid_Board = new PyramidXO_Board<char>();
@@ -141,6 +147,32 @@ int main() {
                 players[0] = nullptr;
                 players[1] = nullptr;
                 delete Ultimate_Board;
+            }
+            else if(toupper(ch) == 'G'){
+                auto* TicTacToeBoard = new ::TicTacToeBoard<char>();
+                cout << "starting 5x5 Tic Tac Toe\n";
+                cout << "PLAYER 1\n";
+                players[0] = getPlayer<char>("5x5",'X');
+                cout << "PLAYER 2\n";
+                players[1] = getPlayer<char>("5x5",'O');
+                GameManager<char> TicTacToe(TicTacToeBoard,players);
+                TicTacToe.run();
+                players[0] = nullptr;
+                players[1] = nullptr;
+                delete TicTacToeBoard;
+            }
+            else if(toupper(ch) == 'H'){
+                auto* MisereTicTacToeBoard = new ::MisereTicTacToeBoard<char>();
+                cout << "starting MisereTicTacToe\n";
+                cout << "PLAYER 1\n";
+                players[0] = getPlayer<char>("Misere",'X');
+                cout << "PLAYER 2\n";
+                players[1] = getPlayer<char>("Misere",'O');
+                GameManager<char> MisereTicTacToe(MisereTicTacToeBoard,players);
+                MisereTicTacToe.run();
+                players[0] = nullptr;
+                players[1] = nullptr;
+                delete MisereTicTacToeBoard;
             }
             else if (toupper(ch) == 'Q') {
                 cout << "Thank you for using this program";
