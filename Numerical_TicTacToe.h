@@ -133,9 +133,44 @@ Numerical_TicTacToe_Player<T>::Numerical_TicTacToe_Player(string name, T symbol)
 template <typename T>
 void Numerical_TicTacToe_Player<T>::getmove(int& x, int& y) {
     int number;
-    cout << this->name << ", enter your number and position (e.g., '6 1 1'): ";
-    cin >> number >> x >> y;
-    this->symbol = number + '0';
+    while (true) {
+        cout << "Enter x: ";
+        cin >> x;
+
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            break;
+        }
+    }
+    while (true) {
+        cout << "Enter y: ";
+        cin >> y;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            break;
+        }
+    }
+    while (true) {
+        cout << "Enter your number: ";
+        cin >> number;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            this->symbol=number +'0';
+            break;
+        }
+    }
 }
 
 

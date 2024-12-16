@@ -196,8 +196,33 @@ void SUS_Player<T>::getmove(int& x, int& y) {
         y=0;
     }
     else {
-        cout << "\nPlease enter your move x and y (0 to 2) separated by spaces: ";
-        cin >> x >> y;
+        cout << this->name << "'s Turn " << endl;
+
+        while (true) {
+            cout << "Enter x: ";
+            cin >> x;
+
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Please enter an int" << endl;
+                continue;
+            } else {
+                break;
+            }
+        }
+        while (true) {
+            cout << "Enter y: ";
+            cin >> y;
+            if (cin.fail()) {
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Please enter an int" << endl;
+                continue;
+            } else {
+                break;
+            }
+        }
     }
 }
 

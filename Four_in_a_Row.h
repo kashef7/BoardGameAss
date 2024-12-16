@@ -158,9 +158,20 @@ Four_in_a_Row_Player<T>::Four_in_a_Row_Player(string name, T symbol) : Player<T>
 
 template <typename T>
 void Four_in_a_Row_Player<T>::getmove(int& x, int& y) {
-    cout << "\nPlease enter your move y (0 to 6) : \n";
+    cout << this->name << "'s Turn " << endl;
     x=0;
-    cin >> y;
+    while (true) {
+        cout << "Enter the column you want: ";
+        cin >> y;
+        if (cin.fail()) {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Please enter an int" << endl;
+            continue;
+        } else {
+            break;
+        }
+    }
 
 }
 
