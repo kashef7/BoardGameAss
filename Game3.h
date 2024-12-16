@@ -267,7 +267,36 @@ void TicTacToeHumanPlayer<T>::getmove(int &x, int &y) {
         }
     }
 }
+template <typename T>
+class TicTacToeRandomPlayer: public RandomPlayer<T>{
+public:
+    TicTacToeRandomPlayer(T symbol);
+    void getmove(int& x, int& y);
+};
+template <typename T>
+class MisereTicTacToeRandomPlayer : public RandomPlayer<T>{
+public:
+    MisereTicTacToeRandomPlayer(T symbol);
+    void getmove(int& x, int& y);
+};
 
+template <typename T>
+TicTacToeRandomPlayer<T>::TicTacToeRandomPlayer(T symbol) : RandomPlayer<T>(symbol){}
+
+template <typename T>
+void TicTacToeRandomPlayer<T>::getmove(int &x, int &y) {
+    x = rand()%5;
+    y = rand()%5;
+}
+
+template <typename T>
+MisereTicTacToeRandomPlayer<T>::MisereTicTacToeRandomPlayer(T symbol) : RandomPlayer<T>(symbol){}
+
+template <typename T>
+void MisereTicTacToeRandomPlayer<T>::getmove(int &x, int &y) {
+    x = rand()%3;
+    y = rand()%3;
+}
 
 
 #endif //BOARDGAMEASS_GAME3_H
